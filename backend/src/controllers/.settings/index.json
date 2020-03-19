@@ -1,0 +1,93 @@
+{
+	"status": {
+		"code": {
+			"ok": "200"
+		},
+		"message": {
+			"ok": "OK"
+		},
+		"description": {
+			"unknown": "UNKNOWN",
+			"store": {
+				"success": [
+					"Successful Store Data to Table ('",
+					"' in 'hansomware') :)"
+				],
+				"error": [
+					"Error Store Data to Table ('",
+					"' in 'hansomware') :/"
+				]
+			},
+			"index": {
+				"success": [
+					"Successful Index Table Data ('",
+					"' in 'hansomware') :)"
+				],
+				"error": [
+					"Error Index Table Data ('",
+					"' in 'hansomware') :/"
+				]
+			},
+			"list": {
+				"success": [
+					"Successful List Table Data ('",
+					"' in 'hansomware') :)"
+				],
+				"error": [
+					"Error List Table Data ('",
+					"' in 'hansomware') :/"
+				]
+			},
+			"show": {
+				"success": [
+					"Successful Show Table Data ('",
+					"' in 'hansomware') :)"
+				],
+				"error": [
+					"Error Show Table Data ('",
+					"' in 'hansomware') :/"
+				]
+			},
+			"update": {
+				"success": [
+					"Successful Update Table Data ('",
+					"' in 'hansomware') :)"
+				],
+				"error": [
+					"Error Update Table Data ('",
+					"' in 'hansomware') :/"
+				]
+			},
+			"truncate": {
+				"success": [
+					"Successful Truncate Table Data ('",
+					"' in 'hansomware') :)"
+				],
+				"error": [
+					"Error Truncate Table Data ('",
+					"' in 'hansomware') :/"
+				]
+			},
+			"authenticate": {
+				"success": [
+					"Successful Authenticate Table Data ('",
+					"' in 'hansomware') :)"
+				],
+				"error": [
+					"Error Authenticate Table Data ('",
+					"' in 'hansomware') :/"
+				]
+			},
+			"validate": {
+				"success": [
+					"Successful Validate Table Data ('",
+					"' in 'hansomware') :)"
+				],
+				"error": [
+					"Error Validate Table Data ('",
+					"' in 'hansomware') :/"
+				]
+			}
+		}
+	}
+}

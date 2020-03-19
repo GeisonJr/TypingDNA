@@ -1,0 +1,10 @@
+{
+	"status": {
+		"code": {
+			"ok": "200",
+			"not_found": "404",
+			"unauthorized": "401",
+			"internal_error_server": "500"
+		}
+	}
+}

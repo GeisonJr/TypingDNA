@@ -2,8 +2,10 @@
 import loading from '../../assets/animations/loading.json'
 import dna from '../../assets/animations/dna.json'
 
+import api from "../../services";
+
 /*--- Libraries ---*/
-import { validateTyping } from "../../functions";
+import { validateTyping, checkPattern, onKeyDown, onKeyUp } from "../../functions";
 import React, { useState } from "react";
 import Lottie from "react-lottie";
 
@@ -17,16 +19,23 @@ export default function Login() {
 	/*------ Internal ------*/
 	const [email, setEmail] = useState("");
 	const [results, setResults] = useState(0);
-	const [confirm, setConfirm] = useState("");
 	const [animationState1, setAnimationState1] = useState(true);
-	const [animationState2, setAnimationState2] = useState(true);
 	const [animationState3, setAnimationState3] = useState(false);
 	const [showResultAnimation, setShowResultAnimation] = useState(false);
 
-	function handleSubmit(event) {
+	async function handleSubmit(event) {
 		event.preventDefault();
-		setResults(validateTyping(email).compatibility);
-		chupa = validateTyping(email).compatibility;
+
+		const reponse = await api.post("user/authenticate", { email });
+		const matches = checkPattern(reponse.data);
+
+		const result = validateTyping(email, matches).compatibility;
+
+		console.log("result > " + result)
+		setResults(result);
+
+		chupa = results;
+
 		setTimeout(() => {
 			console.log(chupa);
 			setAnimationState3(true);
@@ -66,15 +75,19 @@ export default function Login() {
 								className="input input1"
 								placeholder="Digite o seu e-mail."
 								value={email}
-								onChange={
-									(event) => {
-										setEmail(event.target.value);
-										setAnimationState1(false);
-										setTimeout(() => {
-											setAnimationState1(true)
-										}, 500);
-									}
-								}
+								onKeyDown={() => {
+									onKeyDown();
+								}}
+								onKeyUp={() => {
+									onKeyUp(email);
+								}}
+								onChange={(event) => {
+									setEmail(event.target.value);
+									setAnimationState1(false);
+									setTimeout(() => {
+										setAnimationState1(true)
+									}, 500);
+								}}
 							/>
 							<div className="lottie">
 								<Lottie
@@ -93,19 +106,17 @@ export default function Login() {
 						<div className="div_input">
 							<input
 								type="text"
-								name="email_2"
+								name="email_1"
 								className="input input2"
-								placeholder="Confirme o seu e-mail."
-								value={confirm}
-								onChange={
-									(event) => {
-										setConfirm(event.target.value);
-										setAnimationState2(false);
-										setTimeout(() => {
-											setAnimationState2(true)
-										}, 500);
-									}
-								}
+								placeholder="Digite o seu e-mail."
+								value={email}
+								onChange={(event) => {
+									setEmail(event.target.value);
+									setAnimationState1(false);
+									setTimeout(() => {
+										setAnimationState1(true)
+									}, 500);
+								}}
 							/>
 							<div className="lottie">
 								<Lottie
@@ -116,7 +127,7 @@ export default function Login() {
 										loop: true,
 										autoplay: false
 									}}
-									isPaused={animationState2}
+									isPaused={animationState1}
 								/>
 							</div>
 						</div>
