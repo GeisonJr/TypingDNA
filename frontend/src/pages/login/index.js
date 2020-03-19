@@ -32,6 +32,7 @@ export default function Login() {
 		const result = validateTyping(email, matches).compatibility;
 
 		console.log("result > " + result)
+
 		setResults(result);
 
 		chupa = results;
@@ -103,7 +104,7 @@ export default function Login() {
 							</div>
 						</div>
 
-						<div className="div_input">
+						{/* <div className="div_input">
 							<input
 								type="text"
 								name="email_1"
@@ -130,7 +131,7 @@ export default function Login() {
 									isPaused={animationState1}
 								/>
 							</div>
-						</div>
+						</div> */}
 
 						<div className="div_button">
 							<button

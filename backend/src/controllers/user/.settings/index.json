@@ -2,9 +2,11 @@
 	"title": "users",
 	"sql": {
 		"store": [
-			"INSERT INTO `users` (`id`, `name`, `password`, `email`, `pattern_1`, `pattern_2`, `creationDate`, `updateDate`) VALUES (NULL, '",
+			"INSERT INTO `users` (`id`, `name`, `password`, `email`, `pattern_1`, `pattern_2`, `pattern_3`, `pattern_4`, `creationDate`, `updateDate`) VALUES (NULL, '",
 			"', MD5('",
 			"'), '",
+			"', '",
+			"', '",
 			"', '",
 			"', '",
 			"', DATE(NOW()), DATE(NOW()))"

@@ -10,8 +10,15 @@ var keyId = 0;
 
 var timeCounter = 0;
 
+var betweenTime = 0;
+var betweenTimeDifference = 0;
+
 export function onKeyDown() {
 	timeCounter = new Date().getTime();
+
+	if (betweenTime != 0) {
+		betweenTimeDifference = new Date().getTime() - betweenTime;
+	}
 }
 
 export function onKeyUp(currentEmail) {
@@ -22,6 +29,7 @@ export function onKeyUp(currentEmail) {
 
 	patternArray[keyId] = {
 		time: new Date().getTime() - timeCounter,
+		betweenTimeDifference
 	};
 
 	if (currentEmail.length === 0) {
@@ -31,11 +39,15 @@ export function onKeyUp(currentEmail) {
 	keyId = currentEmail.length < lastInputText.length ? keyId - 1 : keyId + 1;
 
 	lastInputText = currentEmail;
+
+	betweenTime = new Date().getTime();
 }
 
 export function checkPattern(data) {
 	var pattern1 = data.pattern1;
 	var pattern2 = data.pattern2;
+	var pattern3 = data.pattern3;
+	var pattern4 = data.pattern4;
 	var email = data.email;
 
 	var matches = 0;
@@ -51,12 +63,34 @@ export function checkPattern(data) {
 		var perc1 = average + (average / 100 * ERROR_RATE);
 		var perc2 = average - (average / 100 * ERROR_RATE);
 
-		if (time < perc1 && time > perc2) {
+		var perc3 = getPattern3_4(pattern3, pattern4, keyId);
+
+		console.log(perc3);
+
+		/*
+
+
+				CALCULAMOS A MÉDIA DOS PATTERNS 3 E 4
+						FALTOU COLOCAR O PESO
+
+
+
+			TIRAR 25% DO MENOR E COLOCAR 25 NO MAIOR
+
+
+
+
+		*/
+
+		var matched3_4 = time < perc3[0] && time > perc3[1];
+
+		if (matched3_4 && time < perc1 && time > perc2) {
 			matches++;
 		}
 
 		totalCurrentTime += time;
 		totalStoragedTime += average;
+
 	}
 
 	console.log("total current time: " + totalCurrentTime);
@@ -64,6 +98,15 @@ export function checkPattern(data) {
 	console.log("dif: " + (totalStoragedTime - totalCurrentTime));
 
 	return matches;
+}
+
+function getPattern3_4(pattern3, pattern4, id) {
+	var average = (pattern3[id] + pattern4[id]) / 2;
+
+	var perc1 = average + (average / 100 * 130);
+	var perc2 = average - (average / 100 * 130);
+
+	return [perc1, perc2];
 }
 
 export function validateTyping(email, matches) {

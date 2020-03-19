@@ -56,7 +56,9 @@ class listMethods {
         name: rows[position].name,
         email: rows[position].email,
         pattern1: JSON.parse(rows[position].pattern_1),
-        pattern2: JSON.parse(rows[position].pattern_2)
+        pattern2: JSON.parse(rows[position].pattern_2),
+        pattern3: JSON.parse(rows[position].pattern_3),
+        pattern4: JSON.parse(rows[position].pattern_4)
       }
     ];
   }
