@@ -1,1 +1,1 @@
-# HansoMWarE Corp. Authentication Method
+# HansoMWarE/MaxterCreation Authentication Method
